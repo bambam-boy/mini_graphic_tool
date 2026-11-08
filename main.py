@@ -2,7 +2,7 @@ import tkinter as tk
 
 
 
-class MainFrame:
+class Main:
     def __init__(self):
         self.root=tk.Tk()
         self.window_w=1830
@@ -14,8 +14,8 @@ class MainFrame:
         self.root.mainloop()
 
     def draw_parts(self):
-        cnavas=Canvas(self.root,self.window_w,self.window_h)
-class Canvas():
+        self.canvas=MainCnavas(self.root,self.window_w,self.window_h)
+class MainCnavas:
     def __init__(self,root,w,h):
         self.root=root
         self.w=w
@@ -97,4 +97,4 @@ class Canvas():
 
 
 if __name__=="__main__":
-    app=MainFrame()
+    app=Main()
