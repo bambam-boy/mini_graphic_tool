@@ -23,12 +23,11 @@ class Graphic_thingy:
         self.main_canvas.bind("<ButtonRelease-3>", self.BUp)
         self.root.geometry(self.window_geomerty)
         self.root.title("graphic_thingy")
-        self.main_canvas.pack()
+        self.main_canvas.pack(pady=100)
         self.root.mainloop()
 
 
     def BUp(self,event):
-        print("te")
         self.isDrawing=False
         self.isEraesing=False
 
