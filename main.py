@@ -8,13 +8,29 @@ class Main:
         self.window_w=1830
         self.window_h=990
         self.window_geomerty=f"{self.window_w}x{self.window_h}"
+        self.main_canvas=tk.Canvas(self.root,width=self.window_w,height=self.window_h)
+        self.main_canvas.create_rectangle(0,0,self.window_w,self.window_h,fill="#ea0b0b")
         self.root.geometry(self.window_geomerty)
         self.root.title("graphic_thingy")
+        # self.root.bind("<Configure>",self.resize_window)
+        self.main_canvas.place(x=0,y=0)
         self.draw_parts()
         self.root.mainloop()
 
+
+
+    # def resize_window(self,e):
+    #     self.window_w=e.width
+    #     self.window_h=e.height
+    #     self.canvas.resize(self.window_w,self.window_h)
+
+
+
     def draw_parts(self):
         self.canvas=MainCnavas(self.root,self.window_w,self.window_h)
+
+
+
 class MainCnavas:
     def __init__(self,root,w,h):
         self.root=root
@@ -25,15 +41,22 @@ class MainCnavas:
         self.isDrawing=False
         self.isEraesing=False
         self.line_width=10
-        self.main_canvas=tk.Canvas(self.root,width=self.w-100,height=self.h-100)
-        self.main_canvas.create_rectangle(0,0,self.w-100,self.h-100,fill="#ffffff")
+        self.editing_canvas=tk.Canvas(self.root,width=self.w-100,height=self.h-100)
+        self.editing_canvas.create_rectangle(0,0,self.w-100,self.h-100,fill="#ffffff")
         self.Color="#00ff00"
-        self.main_canvas.bind("<Motion>",self.Motion)
-        self.main_canvas.bind("<ButtonPress-1>", self.Button_draw)
-        self.main_canvas.bind("<ButtonPress-3>", self.Button_ereas)
-        self.main_canvas.bind("<ButtonRelease-1>", self.BUp)
-        self.main_canvas.bind("<ButtonRelease-3>", self.BUp)
-        self.main_canvas.pack(pady=100)
+        self.editing_canvas.bind("<Motion>",self.Motion)
+        self.editing_canvas.bind("<ButtonPress-1>", self.Button_draw)
+        self.editing_canvas.bind("<ButtonPress-3>", self.Button_ereas)
+        self.editing_canvas.bind("<ButtonRelease-1>", self.BUp)
+        self.editing_canvas.bind("<ButtonRelease-3>", self.BUp)
+        self.editing_canvas.place(x=50,y=50)
+        self.root.tkraise(self.editing_canvas)
+
+
+    # def resize(self,w,h):
+    #     self.w=w
+    #     self.h=h
+    #     self.editing_canvas.config(width=w-100,height=h-100)
 
 
 
@@ -62,7 +85,7 @@ class MainCnavas:
 
 
     def Draw(self,x1,y1,x2,y2):
-        self.main_canvas.create_line(
+        self.editing_canvas.create_line(
             x1,
             y1,
             x2,
