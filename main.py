@@ -5,11 +5,11 @@ import tkinter as tk
 class Main:
     def __init__(self):
         self.root=tk.Tk()
-        self.window_w=1830
-        self.window_h=990
+        self.window_w=2300
+        self.window_h=1400
         self.window_geomerty=f"{self.window_w}x{self.window_h}"
         self.main_canvas=tk.Canvas(self.root,width=self.window_w,height=self.window_h)
-        self.main_canvas.create_rectangle(0,0,self.window_w,self.window_h,fill="#ea0b0b")
+        self.main_canvas.create_rectangle(0,0,self.window_w,self.window_h,fill="#0b68ea")
         self.root.geometry(self.window_geomerty)
         self.root.title("graphic_thingy")
         # self.root.bind("<Configure>",self.resize_window)
@@ -36,20 +36,21 @@ class MainCnavas:
         self.root=root
         self.w=w
         self.h=h
+        self.padding=700
         self.oldxp:int=None
         self.oldyp:int=None
         self.isDrawing=False
         self.isEraesing=False
         self.line_width=10
-        self.editing_canvas=tk.Canvas(self.root,width=self.w-100,height=self.h-100)
-        self.editing_canvas.create_rectangle(0,0,self.w-100,self.h-100,fill="#ffffff")
+        self.editing_canvas=tk.Canvas(self.root,width=self.w-self.padding,height=self.h-50)
+        self.editing_canvas.create_rectangle(0,0,self.w-self.padding,self.h-50,fill="#ffffff")
         self.Color="#00ff00"
         self.editing_canvas.bind("<Motion>",self.Motion)
         self.editing_canvas.bind("<ButtonPress-1>", self.Button_draw)
         self.editing_canvas.bind("<ButtonPress-3>", self.Button_ereas)
         self.editing_canvas.bind("<ButtonRelease-1>", self.BUp)
         self.editing_canvas.bind("<ButtonRelease-3>", self.BUp)
-        self.editing_canvas.place(x=50,y=50)
+        self.editing_canvas.place(x=30*(self.padding/100),y=25)
         self.root.tkraise(self.editing_canvas)
 
 
